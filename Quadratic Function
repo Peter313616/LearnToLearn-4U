@@ -1,0 +1,44 @@
+/*
+* Peter McEwen
+* February 26, 2019
+* find parts of quadratic function
+*/
+var aValue = 0.00;
+var bValue = 0.00;
+var cValue = 0.00;
+var sheet = SpreadsheetApp.getActive();
+
+function onOpen() {
+  var menuItems = [
+    {name: 'Prepare sheet...', functionName: 'prepareSheet_'},
+    {name: 'Generate step-by-step...', functionName: 'generateStepByStep_'},
+    //{name:'Get Value', functionName: 'GetValues'}
+  ];
+  sheet.addMenu('Directions', menuItems);
+}
+
+function prepareSheet_() {
+  var headers = [
+    'standard form equation',
+    'vertex form',
+    'factored form',
+    'vertex',
+    'zeroes',];
+  var initialData = [
+    '41x2 + 7x + 18',
+    'S'];
+  sheet.getRange('A1:D1').setValues([headers]).setFontWeight('bold');
+  sheet.getRange('A2:B2').setValues([initialData]);
+  sheet.setFrozenRows(1);
+  sheet.autoResizeColumns(1, 4);
+}
+
+function GetValues(userInput) {
+  aValue = userInput.substring(0,userInput.indexOf('x'));
+  bValue = userInput.substring(userInput.indexOf('+' + 1)), userInput.lastIndexOf('x') - userInput.indexOf('+' + 1);
+  
+  return aValue + bValue;
+}
+
+
+//funct//ion CalculateFactoredForm() {  
